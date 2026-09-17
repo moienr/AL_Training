@@ -11,8 +11,10 @@ embeddings). The first notebook needs no Earth observation background.
 | `03_global_map.ipynb` | The global campaign: its method, the map of its positives by wave, the Austrian inventory of 355 solar farms |
 | `04_earth_engine_operator.ipynb` | The operator window of the EarthQuery tool on the live Earth Engine map of Austria: classification, similarity search, Find Top Locations |
 
-Notebooks 01 to 03 run offline from the files in `data/`. Notebook 04 needs
-an Earth Engine account. Every animation is also saved as a GIF in
+Each notebook opens in Google Colab from the button at its top; there its
+first cell clones this repository and installs what Colab lacks. Notebooks 01
+to 03 run offline from the files in `data/`. Notebook 04 needs an Earth
+Engine account. Every animation is also saved as a GIF in
 `outputs/`, and `outputs/preview/` holds HTML renders of the executed
 notebooks for reading without running anything.
 
