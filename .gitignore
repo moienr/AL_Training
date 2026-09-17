@@ -1,0 +1,15 @@
+# local notes, tooling and editor settings, not part of the course
+.*/
+!.github/
+build_notebooks.py
+docs/
+extra/
+tools/
+
+# python and jupyter
+__pycache__/
+*.pyc
+
+# written while running the notebooks, or kept only as a local reference
+outputs/*.csv
+outputs/austria_budgets.png

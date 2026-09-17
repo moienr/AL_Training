@@ -1,0 +1,15 @@
+IIASA Active Learning Mini Course
+Copyright (c) 2026 Moien Rangzan, International Institute for Applied Systems Analysis (IIASA)
+
+This work is licensed under the Creative Commons Attribution 4.0 International
+License (CC BY 4.0). You may share and adapt it for any purpose, including
+commercially, as long as you give appropriate credit, link to the license and
+indicate if changes were made.
+
+The full license text is at https://creativecommons.org/licenses/by/4.0/legalcode
+and a summary at https://creativecommons.org/licenses/by/4.0/
+
+The data files in data/ are derived from third-party sources that keep their
+own terms: the AlphaEarth embeddings (Google Satellite Embedding V1, Brown et
+al. 2025) and the Microsoft Global Renewables Watch solar sites (Robinson et
+al. 2025). See README.md for details.

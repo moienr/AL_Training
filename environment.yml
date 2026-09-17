@@ -1,0 +1,22 @@
+# Conda environment for the IIASA active learning training.
+#   mamba env create -f environment.yml      (or: conda env create -f environment.yml)
+#   conda activate al_training
+#   jupyter lab
+name: al_training
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - pillow
+  - ipywidgets
+  - jupyterlab
+  - notebook
+  - plotly
+  - nbformat
+  - geemap
+  - earthengine-api
+  - ipyleaflet
