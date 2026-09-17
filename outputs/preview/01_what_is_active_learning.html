@@ -7796,7 +7796,18 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=417d5dca">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=068b7952">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><a href="https://colab.research.google.com/github/moienr/AL_Training/blob/main/notebooks/01_what_is_active_learning.ipynb"><img alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/></a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=29135348">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7810,18 +7821,42 @@ a.anchor-link {
 <li>pick the points whose labels would help the most,</li>
 <li>get those labels, and go back to step 1.</li>
 </ol>
-<img alt="the active learning loop" src="../figures/al_loop.jpg" width="640"/>
+<img alt="the active learning loop" src="https://raw.githubusercontent.com/moienr/AL_Training/main/figures/al_loop.jpg" width="640"/>
 <p>In the figure, the model prediction on the unlabelled pool is step 2, the AL module that picks the points is step 3, the human annotator is step 4, and the forward pass that retrains the model on the annotated points is step 1.</p>
 <p>Step 3 is the part that differs between methods. It is called the acquisition strategy. This notebook shows the common strategies on a small two-dimensional dataset, where every choice can be drawn, and then the rule the EarthQuery tool uses.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=8eab42ff">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=82f1793e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># On Google Colab this cell fetches the course files and installs what Colab lacks; elsewhere it does nothing.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">google.colab</span>
+    <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="s2">"/content/AL_Training"</span><span class="p">):</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">"git"</span><span class="p">,</span> <span class="s2">"clone"</span><span class="p">,</span> <span class="s2">"-q"</span><span class="p">,</span> <span class="s2">"--depth"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">,</span> <span class="s2">"https://github.com/moienr/AL_Training.git"</span><span class="p">,</span> <span class="s2">"/content/AL_Training"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">"/content/AL_Training/notebooks"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=df931a2c">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
@@ -7836,7 +7871,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5d4b8a9b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6427a479">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7847,12 +7882,12 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5518e50c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b6c45e42">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">al_training.toy</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_toy</span><span class="p">,</span> <span class="n">make_toy_model</span><span class="p">,</span> <span class="n">plot_points</span><span class="p">,</span> <span class="n">plot_probability</span>
@@ -7880,9 +7915,9 @@ a.anchor-link {
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>[&lt;matplotlib.lines.Line2D at 0x795652c3ecd0&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x7e76d0e78ed0&gt;]</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -7894,7 +7929,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=69a2b29b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=519dcd8e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7904,12 +7939,12 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=dae7241b">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f0a60ed5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">al_training.simulate</span><span class="w"> </span><span class="kn">import</span> <span class="n">initial_labels</span>
@@ -7933,13 +7968,13 @@ a.anchor-link {
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>[&lt;matplotlib.lines.Line2D at 0x795652a8d3d0&gt;,
- &lt;matplotlib.lines.Line2D at 0x795652ae77d0&gt;,
- &lt;matplotlib.lines.Line2D at 0x795652af4190&gt;,
- &lt;matplotlib.lines.Line2D at 0x795652ac4410&gt;,
- &lt;matplotlib.lines.Line2D at 0x795652c6f1d0&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x7e76c1f134d0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7e76c1f72090&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7e76c1f12a10&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7e76c1f72e50&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7e76c1f63c50&gt;]</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -7951,7 +7986,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7571ab5a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=87123523">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7965,12 +8000,12 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0d62b1d7">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=38115be1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">al_training.strategies</span><span class="w"> </span><span class="kn">import</span> <span class="n">entropy</span>
@@ -8005,7 +8040,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ce0c5836">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8b043a38">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8021,12 +8056,12 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e368819d">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=70083757">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">runs</span> <span class="o">=</span> <span class="p">{}</span>
@@ -8060,12 +8095,12 @@ entropy    balanced accuracy after 14 labels: 0.98
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0b1dedbf">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=0e759252">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">16.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -8091,7 +8126,7 @@ entropy    balanced accuracy after 14 labels: 0.98
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4b8dc225">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b0505fb6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8102,12 +8137,12 @@ entropy    balanced accuracy after 14 labels: 0.98
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=1fcad7b1">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=6f0d4c53">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">al_training.simulate</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_many</span>
@@ -8128,7 +8163,7 @@ entropy    balanced accuracy after 14 labels: 0.98
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>&lt;Axes: title={'center': 'balanced accuracy: mean and one standard deviation over 20 starting pairs'}, xlabel='number of labels', ylabel='balanced accuracy'&gt;</pre>
 </div>
@@ -8142,7 +8177,7 @@ entropy    balanced accuracy after 14 labels: 0.98
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0c01729d">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9cbe49c2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8159,12 +8194,12 @@ entropy    balanced accuracy after 14 labels: 0.98
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=9f80b1ff">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=09125bd1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span>
@@ -8185,7 +8220,7 @@ entropy    balanced accuracy after 14 labels: 0.98
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
 <script language="javascript">
@@ -8368,36 +8403,36 @@ input[type=range].anim-slider {
 }
 </style>
 <div class="animation">
-<img alt="No description has been provided for this image" id="_anim_img4a6f4170a0bb44b3bc8875a6bf4ba334"/>
+<img alt="No description has been provided for this image" id="_anim_imgc4f73812d2b146298c0abb6174bc3f6e"/>
 <div class="anim-controls">
-<input class="anim-slider" id="_anim_slider4a6f4170a0bb44b3bc8875a6bf4ba334" max="1" min="0" name="points" oninput="anim4a6f4170a0bb44b3bc8875a6bf4ba334.set_frame(parseInt(this.value));" step="1" type="range" value="0"/>
+<input class="anim-slider" id="_anim_sliderc4f73812d2b146298c0abb6174bc3f6e" max="1" min="0" name="points" oninput="animc4f73812d2b146298c0abb6174bc3f6e.set_frame(parseInt(this.value));" step="1" type="range" value="0"/>
 <div class="anim-buttons">
-<button aria-label="Decrease speed" onclick="anim4a6f4170a0bb44b3bc8875a6bf4ba334.slower()" title="Decrease speed">
+<button aria-label="Decrease speed" onclick="animc4f73812d2b146298c0abb6174bc3f6e.slower()" title="Decrease speed">
 <i class="fa fa-minus"></i></button>
-<button aria-label="First frame" onclick="anim4a6f4170a0bb44b3bc8875a6bf4ba334.first_frame()" title="First frame">
+<button aria-label="First frame" onclick="animc4f73812d2b146298c0abb6174bc3f6e.first_frame()" title="First frame">
 <i class="fa fa-fast-backward"></i></button>
-<button aria-label="Previous frame" onclick="anim4a6f4170a0bb44b3bc8875a6bf4ba334.previous_frame()" title="Previous frame">
+<button aria-label="Previous frame" onclick="animc4f73812d2b146298c0abb6174bc3f6e.previous_frame()" title="Previous frame">
 <i class="fa fa-step-backward"></i></button>
-<button aria-label="Play backwards" onclick="anim4a6f4170a0bb44b3bc8875a6bf4ba334.reverse_animation()" title="Play backwards">
+<button aria-label="Play backwards" onclick="animc4f73812d2b146298c0abb6174bc3f6e.reverse_animation()" title="Play backwards">
 <i class="fa fa-play fa-flip-horizontal"></i></button>
-<button aria-label="Pause" onclick="anim4a6f4170a0bb44b3bc8875a6bf4ba334.pause_animation()" title="Pause">
+<button aria-label="Pause" onclick="animc4f73812d2b146298c0abb6174bc3f6e.pause_animation()" title="Pause">
 <i class="fa fa-pause"></i></button>
-<button aria-label="Play" onclick="anim4a6f4170a0bb44b3bc8875a6bf4ba334.play_animation()" title="Play">
+<button aria-label="Play" onclick="animc4f73812d2b146298c0abb6174bc3f6e.play_animation()" title="Play">
 <i class="fa fa-play"></i></button>
-<button aria-label="Next frame" onclick="anim4a6f4170a0bb44b3bc8875a6bf4ba334.next_frame()" title="Next frame">
+<button aria-label="Next frame" onclick="animc4f73812d2b146298c0abb6174bc3f6e.next_frame()" title="Next frame">
 <i class="fa fa-step-forward"></i></button>
-<button aria-label="Last frame" onclick="anim4a6f4170a0bb44b3bc8875a6bf4ba334.last_frame()" title="Last frame">
+<button aria-label="Last frame" onclick="animc4f73812d2b146298c0abb6174bc3f6e.last_frame()" title="Last frame">
 <i class="fa fa-fast-forward"></i></button>
-<button aria-label="Increase speed" onclick="anim4a6f4170a0bb44b3bc8875a6bf4ba334.faster()" title="Increase speed">
+<button aria-label="Increase speed" onclick="animc4f73812d2b146298c0abb6174bc3f6e.faster()" title="Increase speed">
 <i class="fa fa-plus"></i></button>
 </div>
-<form action="#n" aria-label="Repetition mode" class="anim-state" name="_anim_loop_select4a6f4170a0bb44b3bc8875a6bf4ba334" title="Repetition mode">
-<input id="_anim_radio1_4a6f4170a0bb44b3bc8875a6bf4ba334" name="state" type="radio" value="once"/>
-<label for="_anim_radio1_4a6f4170a0bb44b3bc8875a6bf4ba334">Once</label>
-<input checked="" id="_anim_radio2_4a6f4170a0bb44b3bc8875a6bf4ba334" name="state" type="radio" value="loop"/>
-<label for="_anim_radio2_4a6f4170a0bb44b3bc8875a6bf4ba334">Loop</label>
-<input id="_anim_radio3_4a6f4170a0bb44b3bc8875a6bf4ba334" name="state" type="radio" value="reflect"/>
-<label for="_anim_radio3_4a6f4170a0bb44b3bc8875a6bf4ba334">Reflect</label>
+<form action="#n" aria-label="Repetition mode" class="anim-state" name="_anim_loop_selectc4f73812d2b146298c0abb6174bc3f6e" title="Repetition mode">
+<input id="_anim_radio1_c4f73812d2b146298c0abb6174bc3f6e" name="state" type="radio" value="once"/>
+<label for="_anim_radio1_c4f73812d2b146298c0abb6174bc3f6e">Once</label>
+<input checked="" id="_anim_radio2_c4f73812d2b146298c0abb6174bc3f6e" name="state" type="radio" value="loop"/>
+<label for="_anim_radio2_c4f73812d2b146298c0abb6174bc3f6e">Loop</label>
+<input id="_anim_radio3_c4f73812d2b146298c0abb6174bc3f6e" name="state" type="radio" value="reflect"/>
+<label for="_anim_radio3_c4f73812d2b146298c0abb6174bc3f6e">Reflect</label>
 </form>
 </div>
 </div>
@@ -8405,9 +8440,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img4a6f4170a0bb44b3bc8875a6bf4ba334";
-    var slider_id = "_anim_slider4a6f4170a0bb44b3bc8875a6bf4ba334";
-    var loop_select_id = "_anim_loop_select4a6f4170a0bb44b3bc8875a6bf4ba334";
+    var img_id = "_anim_imgc4f73812d2b146298c0abb6174bc3f6e";
+    var slider_id = "_anim_sliderc4f73812d2b146298c0abb6174bc3f6e";
+    var loop_select_id = "_anim_loop_selectc4f73812d2b146298c0abb6174bc3f6e";
     var frames = new Array(16);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAiYAAAHCCAYAAADb8wJPAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -27288,7 +27323,7 @@ uIBNG2G7AAAAAElFTkSuQmCC\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim4a6f4170a0bb44b3bc8875a6bf4ba334 = new Animation(frames, img_id, slider_id, 699.0,
+        animc4f73812d2b146298c0abb6174bc3f6e = new Animation(frames, img_id, slider_id, 699.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -27298,7 +27333,7 @@ uIBNG2G7AAAAAElFTkSuQmCC\
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1ccaee78">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2d66e7cd">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -27308,12 +27343,12 @@ uIBNG2G7AAAAAElFTkSuQmCC\
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=eb2fd464">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=552b0924">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">Xr</span><span class="p">,</span> <span class="n">yr</span> <span class="o">=</span> <span class="n">make_toy</span><span class="p">(</span><span class="s2">"rare"</span><span class="p">)</span>
@@ -27339,11 +27374,11 @@ uIBNG2G7AAAAAElFTkSuQmCC\
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[10]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>[&lt;matplotlib.lines.Line2D at 0x795652c9a090&gt;,
- &lt;matplotlib.lines.Line2D at 0x7956437e7e90&gt;,
- &lt;matplotlib.lines.Line2D at 0x7956402aca90&gt;]</pre>
+<pre>[&lt;matplotlib.lines.Line2D at 0x7e76ca1c00d0&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7e76c1fa8550&gt;,
+ &lt;matplotlib.lines.Line2D at 0x7e76ca201150&gt;]</pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -27355,7 +27390,7 @@ uIBNG2G7AAAAAElFTkSuQmCC\
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cef4139a">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=178ffa65">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -27367,7 +27402,7 @@ uIBNG2G7AAAAAElFTkSuQmCC\
 <li><strong>Exploit + entropy</strong>: half of each batch by highest P(class 1), half by highest entropy.</li>
 </ul>
 <h2 id="The-EarthQuery-rule:-one-third-exploit,-one-third-diversity,-one-third-novelty">The EarthQuery rule: one third exploit, one third diversity, one third novelty<a class="anchor-link" href="#The-EarthQuery-rule:-one-third-exploit,-one-third-diversity,-one-third-novelty">¶</a></h2><p>The EarthQuery tool fills every batch in three equal parts. All three choose from the same candidates, the highest-scoring unlabelled points, but each selects by a different rule. The figure of the paper shows one round: the top row is the search that produces the candidates (the model scores the region, the hottest cells of the score map become blobs, each blob is refined to its best 10 m pixel; part 4 runs this live), and the three panels are the three criteria.</p>
-<p><img alt="one acquisition round of the EarthQuery tool: the three criteria" src="../figures/strategy.png"/></p>
+<p><img alt="one acquisition round of the EarthQuery tool: the three criteria" src="https://raw.githubusercontent.com/moienr/AL_Training/main/figures/strategy.png"/></p>
 <ul>
 <li><strong>Exploit</strong> takes the highest scores. In a real campaign the top scores are mostly solar farms, plus the negatives the model scores highest, which are the most useful negatives to learn from.</li>
 <li><strong>Diversity</strong> runs k-means on the embeddings of the candidates, with as many clusters as it has places to fill, and takes the best-scoring member of every cluster. This gives one example of each type of candidate instead of nine examples of the same type.</li>
@@ -27378,12 +27413,12 @@ uIBNG2G7AAAAAElFTkSuQmCC\
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=023e796d">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d228a6a8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">al_training.toy</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_criteria</span>
@@ -27412,7 +27447,7 @@ uIBNG2G7AAAAAElFTkSuQmCC\
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=18cc580c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=638cdada">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -27423,12 +27458,12 @@ uIBNG2G7AAAAAElFTkSuQmCC\
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4316fbd8">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=bc2e60e1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">strategies</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"random"</span><span class="p">,</span> <span class="s2">"entropy"</span><span class="p">,</span> <span class="s2">"typiclust"</span><span class="p">,</span> <span class="s2">"exploit"</span><span class="p">,</span> <span class="s2">"exploit + entropy"</span><span class="p">,</span> <span class="s2">"earthquery"</span><span class="p">]</span>
@@ -27448,7 +27483,7 @@ uIBNG2G7AAAAAElFTkSuQmCC\
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>&lt;Axes: title={'center': 'balanced accuracy'}, xlabel='number of labels', ylabel='balanced accuracy'&gt;</pre>
 </div>
@@ -27462,7 +27497,7 @@ uIBNG2G7AAAAAElFTkSuQmCC\
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=71d70e5c">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=12dc1a56">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -27481,12 +27516,12 @@ uIBNG2G7AAAAAElFTkSuQmCC\
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=f22b338e">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=ee59a649">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">hr</span> <span class="o">=</span> <span class="n">run_active_learning</span><span class="p">(</span><span class="n">Xr</span><span class="p">,</span> <span class="n">yr</span><span class="p">,</span> <span class="n">Xr_test</span><span class="p">,</span> <span class="n">yr_test</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s2">"earthquery"</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">batch</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">rare_model</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -27504,7 +27539,7 @@ uIBNG2G7AAAAAElFTkSuQmCC\
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
 <script language="javascript">
@@ -27687,36 +27722,36 @@ input[type=range].anim-slider {
 }
 </style>
 <div class="animation">
-<img alt="No description has been provided for this image" id="_anim_img2d7b20f43ad444a9a89e9995361a0989"/>
+<img alt="No description has been provided for this image" id="_anim_imgbefb90e3e1eb4521b5881bc06a84c599"/>
 <div class="anim-controls">
-<input class="anim-slider" id="_anim_slider2d7b20f43ad444a9a89e9995361a0989" max="1" min="0" name="points" oninput="anim2d7b20f43ad444a9a89e9995361a0989.set_frame(parseInt(this.value));" step="1" type="range" value="0"/>
+<input class="anim-slider" id="_anim_sliderbefb90e3e1eb4521b5881bc06a84c599" max="1" min="0" name="points" oninput="animbefb90e3e1eb4521b5881bc06a84c599.set_frame(parseInt(this.value));" step="1" type="range" value="0"/>
 <div class="anim-buttons">
-<button aria-label="Decrease speed" onclick="anim2d7b20f43ad444a9a89e9995361a0989.slower()" title="Decrease speed">
+<button aria-label="Decrease speed" onclick="animbefb90e3e1eb4521b5881bc06a84c599.slower()" title="Decrease speed">
 <i class="fa fa-minus"></i></button>
-<button aria-label="First frame" onclick="anim2d7b20f43ad444a9a89e9995361a0989.first_frame()" title="First frame">
+<button aria-label="First frame" onclick="animbefb90e3e1eb4521b5881bc06a84c599.first_frame()" title="First frame">
 <i class="fa fa-fast-backward"></i></button>
-<button aria-label="Previous frame" onclick="anim2d7b20f43ad444a9a89e9995361a0989.previous_frame()" title="Previous frame">
+<button aria-label="Previous frame" onclick="animbefb90e3e1eb4521b5881bc06a84c599.previous_frame()" title="Previous frame">
 <i class="fa fa-step-backward"></i></button>
-<button aria-label="Play backwards" onclick="anim2d7b20f43ad444a9a89e9995361a0989.reverse_animation()" title="Play backwards">
+<button aria-label="Play backwards" onclick="animbefb90e3e1eb4521b5881bc06a84c599.reverse_animation()" title="Play backwards">
 <i class="fa fa-play fa-flip-horizontal"></i></button>
-<button aria-label="Pause" onclick="anim2d7b20f43ad444a9a89e9995361a0989.pause_animation()" title="Pause">
+<button aria-label="Pause" onclick="animbefb90e3e1eb4521b5881bc06a84c599.pause_animation()" title="Pause">
 <i class="fa fa-pause"></i></button>
-<button aria-label="Play" onclick="anim2d7b20f43ad444a9a89e9995361a0989.play_animation()" title="Play">
+<button aria-label="Play" onclick="animbefb90e3e1eb4521b5881bc06a84c599.play_animation()" title="Play">
 <i class="fa fa-play"></i></button>
-<button aria-label="Next frame" onclick="anim2d7b20f43ad444a9a89e9995361a0989.next_frame()" title="Next frame">
+<button aria-label="Next frame" onclick="animbefb90e3e1eb4521b5881bc06a84c599.next_frame()" title="Next frame">
 <i class="fa fa-step-forward"></i></button>
-<button aria-label="Last frame" onclick="anim2d7b20f43ad444a9a89e9995361a0989.last_frame()" title="Last frame">
+<button aria-label="Last frame" onclick="animbefb90e3e1eb4521b5881bc06a84c599.last_frame()" title="Last frame">
 <i class="fa fa-fast-forward"></i></button>
-<button aria-label="Increase speed" onclick="anim2d7b20f43ad444a9a89e9995361a0989.faster()" title="Increase speed">
+<button aria-label="Increase speed" onclick="animbefb90e3e1eb4521b5881bc06a84c599.faster()" title="Increase speed">
 <i class="fa fa-plus"></i></button>
 </div>
-<form action="#n" aria-label="Repetition mode" class="anim-state" name="_anim_loop_select2d7b20f43ad444a9a89e9995361a0989" title="Repetition mode">
-<input id="_anim_radio1_2d7b20f43ad444a9a89e9995361a0989" name="state" type="radio" value="once"/>
-<label for="_anim_radio1_2d7b20f43ad444a9a89e9995361a0989">Once</label>
-<input checked="" id="_anim_radio2_2d7b20f43ad444a9a89e9995361a0989" name="state" type="radio" value="loop"/>
-<label for="_anim_radio2_2d7b20f43ad444a9a89e9995361a0989">Loop</label>
-<input id="_anim_radio3_2d7b20f43ad444a9a89e9995361a0989" name="state" type="radio" value="reflect"/>
-<label for="_anim_radio3_2d7b20f43ad444a9a89e9995361a0989">Reflect</label>
+<form action="#n" aria-label="Repetition mode" class="anim-state" name="_anim_loop_selectbefb90e3e1eb4521b5881bc06a84c599" title="Repetition mode">
+<input id="_anim_radio1_befb90e3e1eb4521b5881bc06a84c599" name="state" type="radio" value="once"/>
+<label for="_anim_radio1_befb90e3e1eb4521b5881bc06a84c599">Once</label>
+<input checked="" id="_anim_radio2_befb90e3e1eb4521b5881bc06a84c599" name="state" type="radio" value="loop"/>
+<label for="_anim_radio2_befb90e3e1eb4521b5881bc06a84c599">Loop</label>
+<input id="_anim_radio3_befb90e3e1eb4521b5881bc06a84c599" name="state" type="radio" value="reflect"/>
+<label for="_anim_radio3_befb90e3e1eb4521b5881bc06a84c599">Reflect</label>
 </form>
 </div>
 </div>
@@ -27724,9 +27759,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_img2d7b20f43ad444a9a89e9995361a0989";
-    var slider_id = "_anim_slider2d7b20f43ad444a9a89e9995361a0989";
-    var loop_select_id = "_anim_loop_select2d7b20f43ad444a9a89e9995361a0989";
+    var img_id = "_anim_imgbefb90e3e1eb4521b5881bc06a84c599";
+    var slider_id = "_anim_sliderbefb90e3e1eb4521b5881bc06a84c599";
+    var loop_select_id = "_anim_loop_selectbefb90e3e1eb4521b5881bc06a84c599";
     var frames = new Array(18);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAiYAAAImCAYAAABnzkFGAAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -50358,7 +50393,7 @@ AABJRU5ErkJggg==\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anim2d7b20f43ad444a9a89e9995361a0989 = new Animation(frames, img_id, slider_id, 699.0,
+        animbefb90e3e1eb4521b5881bc06a84c599 = new Animation(frames, img_id, slider_id, 699.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -50368,7 +50403,7 @@ AABJRU5ErkJggg==\
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=6b8eb77b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0dd118e5">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>

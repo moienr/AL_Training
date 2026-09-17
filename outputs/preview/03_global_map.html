@@ -7796,24 +7796,60 @@ a.anchor-link {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <main>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d55c6b1f">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e6bb7684">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><a href="https://colab.research.google.com/github/moienr/AL_Training/blob/main/notebooks/03_global_map.ipynb"><img alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/></a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=2fc6aa75">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Part-3:-the-global-campaign:-its-method,-the-54,942-positives-it-found,-and-the-Austrian-inventory">Part 3: the global campaign: its method, the 54,942 positives it found, and the Austrian inventory<a class="anchor-link" href="#Part-3:-the-global-campaign:-its-method,-the-54,942-positives-it-found,-and-the-Austrian-inventory">¶</a></h1><p>The EarthQuery campaign ran the loop of part 2 in more than 100 regions around the world. Instead of a person, a jury of two vision language models labelled the candidates on satellite basemaps:</p>
-<p><img alt="the VLM campaign" src="../figures/vlm_campaign.png"/></p>
+<p><img alt="the VLM campaign" src="https://raw.githubusercontent.com/moienr/AL_Training/main/figures/vlm_campaign.png"/></p>
 <p>Each region starts from the verified solar farms of the Microsoft global layer, borrowing the most similar sites from other regions when it has fewer than 100, plus 200 representative landscape negatives. It is then searched in seven passes: three at 2,560 m, two at 160 m, two at 20 m, the model retrained after every pass. Every candidate gets four votes, Gemma 4 and Qwen 3.6 each on a Google and an Esri image. Two yes votes on one basemap make a positive, four no votes a negative, and anything else is a tie for a person. This notebook shows the positives it produced, by wave.</p>
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=4280aa58">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=051bcfc1">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># On Google Colab this cell fetches the course files and installs what Colab lacks; elsewhere it does nothing.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">google.colab</span>
+    <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">IN_COLAB</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">if</span> <span class="n">IN_COLAB</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="s2">"/content/AL_Training"</span><span class="p">):</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s2">"git"</span><span class="p">,</span> <span class="s2">"clone"</span><span class="p">,</span> <span class="s2">"-q"</span><span class="p">,</span> <span class="s2">"--depth"</span><span class="p">,</span> <span class="s2">"1"</span><span class="p">,</span> <span class="s2">"https://github.com/moienr/AL_Training.git"</span><span class="p">,</span> <span class="s2">"/content/AL_Training"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s2">"-m"</span><span class="p">,</span> <span class="s2">"pip"</span><span class="p">,</span> <span class="s2">"install"</span><span class="p">,</span> <span class="s2">"-q"</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">'plotly&gt;=5.24'</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">"/content/AL_Training/notebooks"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2c4a71e2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
@@ -7827,12 +7863,12 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=4a543ddd">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=fc63667e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">al_training.globalmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_points</span>
@@ -7857,7 +7893,7 @@ a.anchor-link {
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -7957,7 +7993,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=d6d7aa15">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21cc2eea">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7967,12 +8003,12 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=e78cbf7e">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=71893c19">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">al_training.globalmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">draw_world</span><span class="p">,</span> <span class="n">TEAL</span><span class="p">,</span> <span class="n">GOLD</span>
@@ -8000,7 +8036,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9f9700c0">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5636066f">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -8010,12 +8046,12 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=2d8c0a23">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3f4730e8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span>
@@ -8036,7 +8072,7 @@ a.anchor-link {
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
 <script language="javascript">
@@ -8219,36 +8255,36 @@ input[type=range].anim-slider {
 }
 </style>
 <div class="animation">
-<img alt="No description has been provided for this image" id="_anim_imge958ea948b534ed3afafd41bf95f8bb1"/>
+<img alt="No description has been provided for this image" id="_anim_img18a59ccb583d4943b5407f30ed9d226e"/>
 <div class="anim-controls">
-<input class="anim-slider" id="_anim_slidere958ea948b534ed3afafd41bf95f8bb1" max="1" min="0" name="points" oninput="anime958ea948b534ed3afafd41bf95f8bb1.set_frame(parseInt(this.value));" step="1" type="range" value="0"/>
+<input class="anim-slider" id="_anim_slider18a59ccb583d4943b5407f30ed9d226e" max="1" min="0" name="points" oninput="anim18a59ccb583d4943b5407f30ed9d226e.set_frame(parseInt(this.value));" step="1" type="range" value="0"/>
 <div class="anim-buttons">
-<button aria-label="Decrease speed" onclick="anime958ea948b534ed3afafd41bf95f8bb1.slower()" title="Decrease speed">
+<button aria-label="Decrease speed" onclick="anim18a59ccb583d4943b5407f30ed9d226e.slower()" title="Decrease speed">
 <i class="fa fa-minus"></i></button>
-<button aria-label="First frame" onclick="anime958ea948b534ed3afafd41bf95f8bb1.first_frame()" title="First frame">
+<button aria-label="First frame" onclick="anim18a59ccb583d4943b5407f30ed9d226e.first_frame()" title="First frame">
 <i class="fa fa-fast-backward"></i></button>
-<button aria-label="Previous frame" onclick="anime958ea948b534ed3afafd41bf95f8bb1.previous_frame()" title="Previous frame">
+<button aria-label="Previous frame" onclick="anim18a59ccb583d4943b5407f30ed9d226e.previous_frame()" title="Previous frame">
 <i class="fa fa-step-backward"></i></button>
-<button aria-label="Play backwards" onclick="anime958ea948b534ed3afafd41bf95f8bb1.reverse_animation()" title="Play backwards">
+<button aria-label="Play backwards" onclick="anim18a59ccb583d4943b5407f30ed9d226e.reverse_animation()" title="Play backwards">
 <i class="fa fa-play fa-flip-horizontal"></i></button>
-<button aria-label="Pause" onclick="anime958ea948b534ed3afafd41bf95f8bb1.pause_animation()" title="Pause">
+<button aria-label="Pause" onclick="anim18a59ccb583d4943b5407f30ed9d226e.pause_animation()" title="Pause">
 <i class="fa fa-pause"></i></button>
-<button aria-label="Play" onclick="anime958ea948b534ed3afafd41bf95f8bb1.play_animation()" title="Play">
+<button aria-label="Play" onclick="anim18a59ccb583d4943b5407f30ed9d226e.play_animation()" title="Play">
 <i class="fa fa-play"></i></button>
-<button aria-label="Next frame" onclick="anime958ea948b534ed3afafd41bf95f8bb1.next_frame()" title="Next frame">
+<button aria-label="Next frame" onclick="anim18a59ccb583d4943b5407f30ed9d226e.next_frame()" title="Next frame">
 <i class="fa fa-step-forward"></i></button>
-<button aria-label="Last frame" onclick="anime958ea948b534ed3afafd41bf95f8bb1.last_frame()" title="Last frame">
+<button aria-label="Last frame" onclick="anim18a59ccb583d4943b5407f30ed9d226e.last_frame()" title="Last frame">
 <i class="fa fa-fast-forward"></i></button>
-<button aria-label="Increase speed" onclick="anime958ea948b534ed3afafd41bf95f8bb1.faster()" title="Increase speed">
+<button aria-label="Increase speed" onclick="anim18a59ccb583d4943b5407f30ed9d226e.faster()" title="Increase speed">
 <i class="fa fa-plus"></i></button>
 </div>
-<form action="#n" aria-label="Repetition mode" class="anim-state" name="_anim_loop_selecte958ea948b534ed3afafd41bf95f8bb1" title="Repetition mode">
-<input id="_anim_radio1_e958ea948b534ed3afafd41bf95f8bb1" name="state" type="radio" value="once"/>
-<label for="_anim_radio1_e958ea948b534ed3afafd41bf95f8bb1">Once</label>
-<input checked="" id="_anim_radio2_e958ea948b534ed3afafd41bf95f8bb1" name="state" type="radio" value="loop"/>
-<label for="_anim_radio2_e958ea948b534ed3afafd41bf95f8bb1">Loop</label>
-<input id="_anim_radio3_e958ea948b534ed3afafd41bf95f8bb1" name="state" type="radio" value="reflect"/>
-<label for="_anim_radio3_e958ea948b534ed3afafd41bf95f8bb1">Reflect</label>
+<form action="#n" aria-label="Repetition mode" class="anim-state" name="_anim_loop_select18a59ccb583d4943b5407f30ed9d226e" title="Repetition mode">
+<input id="_anim_radio1_18a59ccb583d4943b5407f30ed9d226e" name="state" type="radio" value="once"/>
+<label for="_anim_radio1_18a59ccb583d4943b5407f30ed9d226e">Once</label>
+<input checked="" id="_anim_radio2_18a59ccb583d4943b5407f30ed9d226e" name="state" type="radio" value="loop"/>
+<label for="_anim_radio2_18a59ccb583d4943b5407f30ed9d226e">Loop</label>
+<input id="_anim_radio3_18a59ccb583d4943b5407f30ed9d226e" name="state" type="radio" value="reflect"/>
+<label for="_anim_radio3_18a59ccb583d4943b5407f30ed9d226e">Reflect</label>
 </form>
 </div>
 </div>
@@ -8256,9 +8292,9 @@ input[type=range].anim-slider {
   /* Instantiate the Animation class. */
   /* The IDs given should match those used in the template above. */
   (function() {
-    var img_id = "_anim_imge958ea948b534ed3afafd41bf95f8bb1";
-    var slider_id = "_anim_slidere958ea948b534ed3afafd41bf95f8bb1";
-    var loop_select_id = "_anim_loop_selecte958ea948b534ed3afafd41bf95f8bb1";
+    var img_id = "_anim_img18a59ccb583d4943b5407f30ed9d226e";
+    var slider_id = "_anim_slider18a59ccb583d4943b5407f30ed9d226e";
+    var loop_select_id = "_anim_loop_select18a59ccb583d4943b5407f30ed9d226e";
     var frames = new Array(39);
     
   frames[0] = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABEwAAAIcCAYAAADsXzt3AAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90\
@@ -135162,7 +135198,7 @@ gg==\
     /* set a timeout to make sure all the above elements are created before
        the object is initialized. */
     setTimeout(function() {
-        anime958ea948b534ed3afafd41bf95f8bb1 = new Animation(frames, img_id, slider_id, 149.0,
+        anim18a59ccb583d4943b5407f30ed9d226e = new Animation(frames, img_id, slider_id, 149.0,
                                  loop_select_id);
     }, 0);
   })()
@@ -135172,7 +135208,7 @@ gg==\
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=472289bb">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=48051f3a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -135182,12 +135218,12 @@ gg==\
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7fc84a44">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=cf3a12d3">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">al_training.globalmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotly_animation</span>
@@ -135208,7 +135244,7 @@ gg==\
 </div>
 </div>
 </div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ff6165af">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7217dea8">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -135216,7 +135252,7 @@ gg==\
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Hit-rates-by-pass:-coarse-passes-find-negatives,-fine-passes-find-farms">Hit rates by pass: coarse passes find negatives, fine passes find farms<a class="anchor-link" href="#Hit-rates-by-pass:-coarse-passes-find-negatives,-fine-passes-find-farms">¶</a></h2><p>The coarse passes mostly find negatives: 86 to 90% of the candidates at 2,560 m are not farms. The fine passes find farms: 33 to 53% of the candidates at 20 m are positive, and the hit rate rises from one pass to the next (in China 9 from 15% to 77%). Across waves 1 to 4, which cover 101 regions, the jury looked at 80,908 candidates and returned 25,961 positives, 47,618 negatives and 7,329 ties, from 323,922 votes. Exploit has the highest yield in every region; novelty mostly collects hard negatives in sparse regions and finds farms in dense ones.</p>
 <h2 id="The-Austrian-inventory:-355-solar-farms-with-outlines">The Austrian inventory: 355 solar farms with outlines<a class="anchor-link" href="#The-Austrian-inventory:-355-solar-farms-with-outlines">¶</a></h2><p>Where a person ran the loop to the end, the result is a complete inventory. Austria: 355 solar farms covering 933 ha of panels (median 1.1 ha, the largest 90 ha), each outlined by SAM 3 on 0.3 m imagery. Before the Microsoft points were used, the map held 234 sites and the Microsoft layer 136, with 102 within 500 m of one another; after their points joined the training set the final map holds 355, that is 121 more than ours had: the 34 that only Microsoft held and 87 that the re-run found beyond both.</p>
-<p><img alt="the Austrian product" src="../figures/austria_product.png"/></p>
+<p><img alt="the Austrian product" src="https://raw.githubusercontent.com/moienr/AL_Training/main/figures/austria_product.png"/></p>
 <h2 id="Summary">Summary<a class="anchor-link" href="#Summary">¶</a></h2><ul>
 <li>One loop, one seed layer, one jury: the campaign produced about 55,000 positives in about a week of compute.</li>
 <li>The map follows the Microsoft layer where that layer is dense and adds regions it does not cover.</li>
