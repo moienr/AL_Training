@@ -25,7 +25,7 @@ STRATA = {"exploit": "#d9a21b", "diversity": "#0e7c6b", "novelty": "#d95d39", "t
 STRATA_LABELS = {"exploit": "exploit: highest score", "diversity": "diversity: one per cluster",
                  "novelty": "novelty: confident and unlike any label", "topup": "top-up by score",
                  "init": "starting labels"}
-FARM, NEG = "#ff8c1a", "#ffffff"          # labelled solar farm / labelled negative on the probability map
+FARM, NEG = "#2ecc40", "#e41a1c"          # labelled solar farm (green) / labelled negative (red) on the probability map
 
 
 def tidy(ax):
