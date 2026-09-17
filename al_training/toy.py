@@ -90,7 +90,7 @@ def true_probability(G, kind):
 
 
 def truth_handle():
-    return Line2D([], [], color=TRUTH, lw=1.3, ls="--", label="true boundary: true P(class 1) = 0.5")
+    return Line2D([], [], color=TRUTH, lw=1.3, ls="--", label="true boundary (P = 0.5)")
 
 
 def plot_truth(ax, X, kind):
@@ -116,14 +116,29 @@ def dot(color, label, size=6, edge=None, hollow=False):
                   markeredgewidth=1.3 if hollow else 0.6)
 
 
-def add_legend(ax, handles, loc="best"):
-    if handles:
+def add_legend(ax, handles, loc="below", ncol=None):
+    """The legend under the axes (the default), where it covers no point, or at a matplotlib location."""
+    if not handles:
+        return
+    if loc == "below":
+        ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.02), ncol=ncol or 2,
+                  fontsize=7.5, frameon=False, handletextpad=0.5, columnspacing=1.4)
+    else:
         ax.legend(handles=handles, loc=loc, fontsize=7.5, frameon=True, framealpha=0.85, edgecolor="none")
+
+
+def figure_legend(fig, handles, ncol=None):
+    """One legend under the whole figure, for panels that share the same entries; replaces an earlier one."""
+    for old in list(fig.legends):
+        old.remove()
+    fig.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, 0.06), ncol=ncol or min(len(handles), 4),
+               fontsize=8, frameon=False, handletextpad=0.5, columnspacing=1.6)
 
 
 def plot_points(ax, X, y=None, labeled=None, picks=None, title=None, legend=True, picks_label="picked this round",
                 truth=None):
-    """Grey pool; labelled points in class colours; new picks ringed in black. With a legend.
+    """Grey pool; labelled points in class colours; new picks ringed in black. With a legend under
+    the axes, or one under the whole figure when legend="figure" (panels with the same entries).
     truth = 'clusters' or 'rare' adds the true boundary of that dataset."""
     handles = []
     s_bg = 9 if len(X) <= 2000 else 2.5             # smaller dots for the 10,000-point pool
@@ -144,7 +159,7 @@ def plot_points(ax, X, y=None, labeled=None, picks=None, title=None, legend=True
                    lw=1.3, zorder=5)
         handles.append(dot("black", picks_label, 9, hollow=True))
     if getattr(ax, "_toy_boundary", False):
-        handles.append(Line2D([], [], color="black", lw=1.2, label="model: P(class 1) = 0.5"))
+        handles.append(Line2D([], [], color="black", lw=1.2, label="model boundary (P = 0.5)"))
     if truth:
         handles.append(plot_truth(ax, X, truth))
     ax.set_aspect("equal"); ax.set_xticks([]); ax.set_yticks([])
@@ -152,7 +167,9 @@ def plot_points(ax, X, y=None, labeled=None, picks=None, title=None, legend=True
         s.set_color("#bbbbbb")
     if title:
         ax.set_title(title, fontsize=10)
-    if legend:
+    if legend == "figure":
+        figure_legend(ax.figure, handles)
+    elif legend:
         add_legend(ax, handles)
     return handles
 
@@ -198,7 +215,7 @@ def show_round(hist, X, y, i, model_factory=None, figsize=(5.2, 4.6), truth=None
     display(fig)
 
 
-def animate_rounds(hist, X, y, model_factory=None, figsize=(5.5, 4.5), interval=700, found=False, truth=None):
+def animate_rounds(hist, X, y, model_factory=None, figsize=(5.5, 5.5), interval=700, found=False, truth=None):
     """One run as an animation, one frame per round: the model refit on the labels
     of that round, its boundary, the labels so far and the picks of the round.
     With found=True the title also counts the class 1 points labelled so far.
@@ -212,8 +229,7 @@ def animate_rounds(hist, X, y, model_factory=None, figsize=(5.5, 4.5), interval=
     n_all = int((y == 1).sum())
     tags = [t for t in ("exploit", "diversity", "novelty")
             if any(t in r for r in hist.get("source", []))]
-    if tags:
-        fig.subplots_adjust(bottom=0.22)          # room for the legend under the plot
+    fig.subplots_adjust(bottom=0.22)              # room for the legend under the plot
 
     def draw(i):
         ax.clear()
@@ -270,7 +286,7 @@ def plot_criteria(X, y, labeled, model, n=9, pool=60, seed=0, figsize=(19, 5), t
         plot_probability(ax, model, X, alpha=0.3, colorbar=False)
         ax.scatter(X[:, 0], X[:, 1], s=7 if len(X) <= 2000 else 2, color=GREY, lw=0, zorder=1)
     labels_h = [dot(BLUE, "labelled: class 0", edge="white"), dot(ORANGE, "labelled: class 1", edge="white"),
-                Line2D([], [], color="black", lw=1.2, label="model: P(class 1) = 0.5; red = high P, blue = low")]
+                Line2D([], [], color="black", lw=1.2, label="model boundary (P = 0.5); red = high P, blue = low")]
     if truth:
         labels_h.append(truth_handle())
         for ax in axes:
