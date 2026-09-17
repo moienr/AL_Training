@@ -175,7 +175,8 @@ def plot_points(ax, X, y=None, labeled=None, picks=None, title=None, legend=True
 
 
 def plot_probability(ax, model, X, kind="prob", alpha=0.55, colorbar=True):
-    """Shade the plane by P(target) ('prob') or by entropy ('entropy'), with a colour bar."""
+    """Shade the plane by P(target) ('prob') or by entropy ('entropy'), with a colour bar and the
+    model's boundary (P = 0.5) as a black line."""
     gx, gy, G = grid(X)
     p = model.predict_proba(G)
     if kind == "prob":
@@ -185,9 +186,8 @@ def plot_probability(ax, model, X, kind="prob", alpha=0.55, colorbar=True):
         z, cmap, vmin, vmax, label = -(q * np.log(q)).sum(axis=1), "magma", 0, np.log(2), "entropy (0 = certain, 0.69 = unsure)"
     cf = ax.contourf(gx, gy, z.reshape(gx.shape), levels=np.linspace(vmin, vmax, 21), cmap=cmap, vmin=vmin, vmax=vmax,
                      alpha=alpha, extend="both")
-    if kind == "prob":
-        ax.contour(gx, gy, p[:, 1].reshape(gx.shape), levels=[0.5], colors="black", linewidths=1.2)
-        ax._toy_boundary = True
+    ax.contour(gx, gy, p[:, 1].reshape(gx.shape), levels=[0.5], colors="black", linewidths=1.2)   # the model's boundary, in both views
+    ax._toy_boundary = True
     if colorbar:
         cb = ax.figure.colorbar(cf, ax=ax, shrink=0.8, pad=0.02, ticks=np.linspace(vmin, vmax, 5))
         cb.set_label(label, fontsize=8); cb.ax.tick_params(labelsize=7)
