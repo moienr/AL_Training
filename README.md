@@ -109,8 +109,10 @@ environment.yml
 
 This course is by Moien Rangzan, International Institute for Applied Systems
 Analysis (IIASA), 2026, and is released under the Creative Commons
-Attribution 4.0 International license (CC BY 4.0, see `LICENSE`). The data
-files keep the terms of their sources listed above.
+Attribution-NonCommercial-NoDerivatives 4.0 International license
+(CC BY-NC-ND 4.0, see `LICENSE`): you may share it unchanged for
+non-commercial purposes with credit; any other use needs the author's
+permission. The data files keep the terms of their sources listed above.
 
 To cite it: Moien Rangzan (2026). IIASA Active Learning Mini Course: active
 learning for Earth observation with AlphaEarth embeddings. IIASA.
